@@ -70,8 +70,8 @@ assert_stmt: 'assert' test [',' test] | '表明して' test [(',' | '、') test]
 
 compound_stmt: if_stmt | while_stmt | for_stmt | try_stmt | with_stmt | funcdef | classdef | decorated | async_stmt
 async_stmt: ASYNC (funcdef | with_stmt | for_stmt)
-if_stmt: 'if' test ':' suite ('elif' test ':' suite)* ['else' ':' suite]
-while_stmt: 'while' test ':' suite ['else' ':' suite]
+if_stmt: 'if' test ':' suite ('elif' test ':' suite)* ['else' ':' suite] | 'もし' test ':' suite ('もしくは' test ':' suite)* ['その他' ':' suite]
+while_stmt: 'while' test ':' suite ['else' ':' suite] | 'この' test 'ながら:' suite ['その他' ':' suite]
 for_stmt: 'for' exprlist 'in' testlist ':' suite ['else' ':' suite]
 try_stmt: ('try' ':' suite
            ((except_clause ':' suite)+

@@ -221,28 +221,17 @@ translabel(grammar *g, label *lb)
 
     if (lb->lb_type == STRING) {
         int o = 0;
-        int index = 0;
+        int a = isalpha(Py_CHARMASK(lb->lb_str[1])) ? 1 : 0;
         int g = 1;
-        int len = u8_strlen(lb->lb_str);
-        while (index < len) {
-            unsigned int c = u8_nextchar(lb->lb_str, &o);
-            if (index == 0 || index == len - 1) {
-                if (c != 39) {
-                    //printf("startend\n");;
-                    g = 0;
-                    break;
-                }
-            } else if(!isalpha(Py_CHARMASK(c)) && !acceptablenonalpha(c)) {
-                //printf("char\n");
-                g = 0;
-                break;
-            }
-            index++;
+        u8_nextchar(lb->lb_str, &o);
+        unsigned int c = u8_nextchar(lb->lb_str, &o);
+        if(!isalpha(Py_CHARMASK(c)) && !acceptablenonalpha(c)) {
+            //printf("char, %s, %c\n", lb->lb_str, c);
+            g = 0;
         }
         //printf("\n%d\n", (lb->lb_str[1] >= 19968));
         //printf("%d\n", u8_offset(lb->lb_str, 2));
-        if (isalpha(Py_CHARMASK(lb->lb_str[1])) ||
-            lb->lb_str[1] == '_' || g == 1) {
+        if (a == 1 || lb->lb_str[1] == '_' || g == 1) {
             // printf("alpha\n");
             char *p;
             char *src;unsigned int u8_nextchar(char *s, int *i);
