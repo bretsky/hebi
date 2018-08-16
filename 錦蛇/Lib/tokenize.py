@@ -94,6 +94,7 @@ EXACT_TOKEN_TYPES = {
     '//=': DOUBLESLASHEQUAL,
     '@':   AT,
     '@=':  ATEQUAL,
+    'は': TOPIC,
 }
 
 class TokenInfo(collections.namedtuple('TokenInfo', 'type string start end line')):
@@ -105,8 +106,10 @@ class TokenInfo(collections.namedtuple('TokenInfo', 'type string start end line'
     @property
     def exact_type(self):
         if self.type == OP and self.string in EXACT_TOKEN_TYPES:
+            print(EXACT_TOKEN_TYPES[self.string])
             return EXACT_TOKEN_TYPES[self.string]
         else:
+            print(self.type)
             return self.type
 
 def group(*choices): return '(' + '|'.join(choices) + ')'
@@ -791,3 +794,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+print("HELLO")

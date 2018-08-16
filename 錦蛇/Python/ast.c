@@ -3026,7 +3026,11 @@ ast_for_expr_stmt(struct compiling *c, const node *n)
         expr_ty expression;
 
         /* a normal assignment */
-        REQ(CHILD(n, 1), EQUAL);
+        printf("%s, %d\n", STR(CHILD(n, 1)), TYPE(CHILD(n, 1)));
+        if (STR(CHILD(n, 1)) == "は") {
+            printf("True\n"); 
+        }
+        assert(TYPE(CHILD(n, 1)) == EQUAL || TYPE(CHILD(n, 1)) == TOPIC);
         targets = _Py_asdl_seq_new(NCH(n) / 2, c->c_arena);
         if (!targets)
             return NULL;

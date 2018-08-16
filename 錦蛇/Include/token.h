@@ -67,7 +67,8 @@ extern "C" {
 #define AWAIT		54
 #define ASYNC		55
 #define ERRORTOKEN	56
-#define N_TOKENS	57
+#define TOPIC 		57	
+#define N_TOKENS	58
 
 /* Special definitions for cooperation with parser */
 

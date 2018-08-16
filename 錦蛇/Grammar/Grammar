@@ -17,7 +17,7 @@ decorators: decorator+
 decorated: decorators (classdef | funcdef | async_funcdef)
 
 async_funcdef: ASYNC funcdef
-funcdef: 'def' NAME parameters ['->' test] ':' suite | '関数' NAME parameters ['->' test] ('：' | ':') suite
+funcdef: 'def' NAME parameters ['->' test] ':' suite | '関数' NAME parameters ['->' test] ':' suite
 
 parameters: '(' [typedargslist] ')'
 typedargslist: (tfpdef ['=' test] (',' tfpdef ['=' test])* [',' [
@@ -57,16 +57,16 @@ import_stmt: import_name | import_from
 import_name: 'import' dotted_as_names | '輸入' dotted_as_names
 # note below: the ('.' | '...') is necessary because '...' is tokenized as ELLIPSIS
 import_from: ('from' (('.' | '...')* dotted_name | ('.' | '...')+)
-              'import' ('*' | '(' import_as_names ')' | import_as_names)) | ('輸入して' (('。' | '.' | '。。。' | '...')* dotted_name | ('。'| '.' | '。。。' | '...')+)
-              'の' ('＊' | '*' | '(' import_as_names ')' | import_as_names))
+              'import' ('*' | '(' import_as_names ')' | import_as_names)) | ('輸入して' (('.' | '...')* dotted_name | ('.' | '...')+)
+              'の' ('*' | '(' import_as_names ')' | import_as_names))
 import_as_name: NAME ['as' NAME] | NAME ['の名は' NAME]
 dotted_as_name: dotted_name ['as' NAME] | dotted_name ['の名は' NAME]
-import_as_names: import_as_name ((',' | '、') import_as_name)* [(',' | '、')]
-dotted_as_names: dotted_as_name ((',' | '、') dotted_as_name)*
-dotted_name: NAME (('.' | '。') NAME)*
-global_stmt: 'global' NAME (',' NAME)* | '大域的な' NAME ((',' | '、') NAME)*
-nonlocal_stmt: 'nonlocal' NAME (',' NAME)* | '非局所的な' NAME ((',' | '、') NAME)*
-assert_stmt: 'assert' test [',' test] | '表明して' test [(',' | '、') test]
+import_as_names: import_as_name (',' import_as_name)* [',']
+dotted_as_names: dotted_as_name (',' dotted_as_name)*
+dotted_name: NAME ('.' NAME)*
+global_stmt: 'global' NAME (',' NAME)* | '大域的な' NAME (',' NAME)*
+nonlocal_stmt: 'nonlocal' NAME (',' NAME)* | '非局所的な' NAME (',' NAME)*
+assert_stmt: 'assert' test [',' test] | '表明して' test [',' test]
 
 compound_stmt: if_stmt | while_stmt | for_stmt | try_stmt | with_stmt | funcdef | classdef | decorated | async_stmt
 async_stmt: ASYNC (funcdef | with_stmt | for_stmt)
